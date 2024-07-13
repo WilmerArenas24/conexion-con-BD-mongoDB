@@ -57,4 +57,29 @@ async function consultarFiltro() {
 
 }
 
+async function elimiar() {
+
+    //Crear una instacion de de mongo client
+    const client = new MongoClient("");
+
+    //Conexion para hacer peticiones
+    try {
+        const conexion = await client.connect();
+        const controlador = conexion.db().collection('users');
+
+        let consulta,filtro;
+
+        //Realizando la consulta con un filtro
+        filtro = {id: 5};
+        respuesta = await controlador.deleteOne(filtro);
+        console.log('Eliminado: ', respuesta);
+
+
+
+    } catch (error) {
+        console.error('Ocurrio el siguiente error: ', error);
+    }
+
+}
+
 consultarFiltro();
